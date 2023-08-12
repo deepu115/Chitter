@@ -137,7 +137,18 @@ describe('Authorization Routes', () => {
                     expect(res.body).to.have.property('token');
                 });
         });
-
+        it('should not login a user with incorrect password', async () => {
+            chai.request(app)
+                .post('/api/users/login')
+                .send({
+                    email: 'bond007@mi.com',
+                    password: '12345678'
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body).to.have.property('msg', 'Invalid credentials');
+                });
+        });
 
     });
 });
