@@ -49,4 +49,32 @@ describe('Authorization Routes', () => {
                     });
             });
     });
+    it('should not register a user with missing fields', async () => {
+        chai.request(app)
+            .post('/api/users/signup')
+            .send({
+                email: 'bond007@mi.com',
+                password: 'spectre007'
+            })
+            .end((err, res) => {
+                expect(res).to.have.status(400);
+                expect(res.body.errors).to.be.an('array');
+                expect(res.body.errors[0]).to.have.property('msg', 'Username is required');
+            });
+    });
+    it('should not register a user with an invalid email format', (done) => {
+        chai.request(app)
+            .post('/api/users/signup')
+            .send({
+                username: 'NoTimeToDie',
+                email: 'bond007',
+                password: 'spectre007'
+            })
+            .end((err, res) => {
+                expect(res).to.have.status(400);
+                expect(res.body.errors).to.be.an('array');
+                expect(res.body.errors[0]).to.have.property('msg', 'Please include a valid email');
+                done();
+            });
+    });
 });
