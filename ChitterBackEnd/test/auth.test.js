@@ -14,7 +14,7 @@ describe('Authorization Routes', () => {
     });
     describe('Signup tests', () => {
         it("should signup a new user", async () => {
-            await chai.request(app)
+            chai.request(app)
                 .post('/api/users/signup')
                 .send({
                     username: 'JamesBond007',
@@ -27,5 +27,26 @@ describe('Authorization Routes', () => {
                     dotenv();
                 });
         });
+    });
+    it('should not register a user with an existing email', async () => {
+        const user = new User({
+            username: 'JamesBond007',
+            email: 'bond007@mi.com',
+            password: 'spectre007'
+        });
+        user.save()
+            .then(() => {
+                chai.request(app)
+                    .post('/api/users/signup')
+                    .send({
+                        username: 'NoTimeToDie',
+                        email: 'bond007@mi.com',
+                        password: 'spectre007'
+                    })
+                    .end((err, res) => {
+                        expect(res).to.have.status(400);
+                        expect(res.body).to.have.property('msg', 'User already exists');
+                    });
+            });
     });
 });
