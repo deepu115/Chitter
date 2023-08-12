@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
     }
 
     try {
-        const { username, email, password } = req.body;
+        const { name, username, email, password } = req.body;
 
         // Check if user already exists
         let user = await User.findOne({ email });
@@ -23,6 +23,7 @@ export const signup = async (req, res) => {
 
         // Create user in database
         user = new User({
+            name,
             username,
             email,
             password: hashedPassword

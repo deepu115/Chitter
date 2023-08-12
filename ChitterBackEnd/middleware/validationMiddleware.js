@@ -2,6 +2,7 @@ import { body, validationResult } from 'express-validator';
 
 // Signup Validation
 export const validateSignup = [
+    body('name', "Name is required").not().isEmpty(),
     body('username', 'Username is required').not().isEmpty(),
     body('email', 'Please include a valid email').isEmail(),
     body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
