@@ -62,7 +62,7 @@ describe('Authorization Routes', () => {
                 expect(res.body.errors[0]).to.have.property('msg', 'Username is required');
             });
     });
-    it('should not register a user with an invalid email format', (done) => {
+    it('should not register a user with an invalid email format', async () => {
         chai.request(app)
             .post('/api/users/signup')
             .send({
@@ -74,7 +74,20 @@ describe('Authorization Routes', () => {
                 expect(res).to.have.status(400);
                 expect(res.body.errors).to.be.an('array');
                 expect(res.body.errors[0]).to.have.property('msg', 'Please include a valid email');
-                done();
+            });
+    });
+    it('should not register a user with a password less than 6 characters', async () => {
+        chai.request(app)
+            .post('/api/users/signup')
+            .send({
+                username: 'NoTimeToDie',
+                email: 'bond007@mi.com',
+                password: '007'
+            })
+            .end((err, res) => {
+                expect(res).to.have.status(400);
+                expect(res.body.errors).to.be.an('array');
+                expect(res.body.errors[0]).to.have.property('msg', 'Please enter a password with 6 or more characters');
             });
     });
 });
