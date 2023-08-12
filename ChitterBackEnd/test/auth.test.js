@@ -115,6 +115,7 @@ describe('Authorization Routes', () => {
         });
     });
 
+
     describe('Login tests', () => {
         before(async () => {
             const user = new User({
@@ -130,7 +131,7 @@ describe('Authorization Routes', () => {
                 .post('/api/users/login')
                 .send({
                     email: 'bond007@mi.com',
-                    password: 'spectre0073'
+                    password: 'spectre007'
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(200);
@@ -149,6 +150,29 @@ describe('Authorization Routes', () => {
                     expect(res.body).to.have.property('msg', 'Invalid credentials');
                 });
         });
-
+        it('should not login without an email field', async () => {
+            chai.request(app)
+                .post('/api/users/login')
+                .send({
+                    password: 'spectre007'
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg', 'Please include a valid email');
+                });
+        });
+        it('should not login without a password field', async () => {
+            chai.request(app)
+                .post('/api/users/login')
+                .send({
+                    email: 'bond007@mi.com'
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body.errors).to.be.an('array');
+                    expect(res.body.errors[0]).to.have.property('msg', 'Password is required');
+                });
+        });
     });
 });
