@@ -1,30 +1,20 @@
-import express from "express";
+import express from 'express';
+import { signup, login } from '../controllers/authController.js';
+import { validateSignup, validateLogin } from '../middleware/validationMiddleware.js';
+import { auth } from '../middleware/authMiddleware.js';
+
 const router = express.Router();
-import User from '../models/user.js';
-import { body, validationResult } from 'express-validator';
 
+// User Signup Route
+router.post('/signup', validateSignup, signup);
 
-// Signup Endpoint
-router.post('/signup', [
-    body('username').isLength({ min: 3 }),
-    body('email').isEmail(),
-    body('password').isLength({ min: 5 })
-], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+// User Login Route
+router.post('/login', validateLogin, login);
 
-    let user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    });
-
-    user = await user.save();
-    res.send(user);
+// Example Protected Route (requires JWT token in the header)
+router.get('/dashboard', auth, (req, res) => {
+    // Here you can fetch and return user-specific data for the dashboard or any other operation.
+    res.send('This is a protected user dashboard');
 });
-
-
 
 export default router;
