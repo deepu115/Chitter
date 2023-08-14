@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -47,6 +48,9 @@ const Signup = () => {
                     <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
                 </div>
                 <button type="submit" className="btn btn-primary">Signup</button>
+                <div className="mt-3">
+                    Already a user? <Link to="/Login">Login</Link>
+                </div>
             </form>
         </div>
     );
