@@ -1,6 +1,6 @@
 import { fetchAllPeeps, addNewPeep } from '../services/peepService.js';
 
-export const getAllPosts = async (req, res) => {
+export const getAllPeeps = async (req, res) => {
     try {
         const peeps = await fetchAllPeeps();
         res.status(200).json(peeps);
