@@ -14,7 +14,10 @@ export const auth = (req, res, next) => {
     // Verify token
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = decoded.user;
+        req.user = {
+            id: decoded.id,
+            username: decoded.username
+        };
         next();
     } catch (err) {
         res.status(401).json({ msg: 'Token is not valid' });
