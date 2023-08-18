@@ -10,11 +10,11 @@ dotenv.config({ path: '.env.dev' });
 chai.use(chaiHttp);
 const { expect } = chai;
 
-
-
-
 describe('Signup tests', () => {
     beforeEach(async () => {
+        await User.deleteMany({});
+    });
+    afterEach(async () => {
         await User.deleteMany({});
     });
     it("should signup a new user", async () => {
@@ -120,6 +120,9 @@ describe('Login tests', () => {
             password: hashedPassword
         });
         await user.save();
+    });
+    afterEach(async () => {
+        await User.deleteMany({});
     });
 
     it('should login a user with correct credentials', async () => {
