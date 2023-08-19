@@ -1,22 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Components/Signup';
-import Login from './Components/Login';
-import Logout from './Components/Logout';
 import Peeps from './Components/Peeps';
+import Logout from './Components/logout';
 
-const App = () => {
+function App() {
+  const [isLoggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem('token')));
+
   return (
-
-    <Router>
-      <Logout />
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Peeps />} />
+        <Route path="/" element={<Peeps isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
-    </Router>
-
+      {isLoggedIn && <Logout setLoggedIn={setLoggedIn} />}
+    </BrowserRouter>
   );
 }
 
 export default App;
+

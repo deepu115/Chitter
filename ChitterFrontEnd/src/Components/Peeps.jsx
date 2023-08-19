@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './Login';
 
-function Peeps({ isLoggedIn }) {
+function Peeps({ isLoggedIn, setLoggedIn }) {
     const [peeps, setPeeps] = useState([]);
     const [newPeepContent, setNewPeepContent] = useState('');
-    const navigate = useNavigate();
-
+    const [showLoginModal, setShowLoginModal] = useState(false);
     useEffect(() => {
         fetchPeeps();
     }, []);
@@ -36,16 +34,20 @@ function Peeps({ isLoggedIn }) {
             } catch (error) {
                 console.error("Error posting peep:", error);
                 if (error.response && error.response.status === 401) {
-                    navigate('/login');
+                    setShowLoginModal(true);
                 }
             }
         } else {
-            navigate('/login');
+            setShowLoginModal(true);
         }
     };
 
     return (
         <div className="container mt-4">
+
+            {showLoginModal && <Login onClose={() => setShowLoginModal(false)} onLogin={() => { setLoggedIn(true); setShowLoginModal(false); }} />}
+
+
             <div className="mb-3">
                 <textarea
                     className="form-control"
@@ -73,3 +75,4 @@ function Peeps({ isLoggedIn }) {
 }
 
 export default Peeps;
+
