@@ -20,7 +20,7 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:3000/api/users/login', formData, { withCredentials: true });
             console.log(response.data);
-
+            localStorage.setItem("token", response.data.token);
         } catch (error) {
             console.error("Error Logging in:", error.response.data);
 
