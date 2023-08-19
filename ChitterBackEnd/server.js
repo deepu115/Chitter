@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
     credentials: true
 }));
 app.use(express.json());
@@ -29,6 +29,9 @@ mongoose.connect(process.env.MONGO_URI, {
 
 app.use('/api/users', userRoutes);
 app.use('/api/peeps', peepRoutes);
+app.use((err, req, res, next) => {
+    res.status(400).json({ msg: err.message });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

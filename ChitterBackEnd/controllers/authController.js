@@ -2,20 +2,19 @@ import User from '../models/user.js';
 import { hashPassword, comparePassword, generateToken } from '../services/authService.js';
 import { validationResult } from 'express-validator';
 
-// User Registration/Signup
 export const signup = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new Error(errors.array()[0].msg);
+        }
+
         const { name, username, email, password } = req.body;
 
         // Check if user already exists
         let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ msg: 'User already exists' });
+            throw new Error('Email already registered');
         }
 
         // Hash password
@@ -34,44 +33,41 @@ export const signup = async (req, res) => {
         const token = generateToken(user);
 
         res.json({ token });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+    } catch (error) {
+        const errorMessage =
+            error.code === 11000 && error.keyValue && error.keyValue.username ? 'Username already taken' :
+                error.message;
+
+        return res.status(400).json({ msg: errorMessage });
     }
 };
 
-// User Login
 export const login = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new Error(errors.array()[0].msg);
+        }
+
         const { email, password } = req.body;
 
         // Check if user exists
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ msg: 'Invalid Username or Password' });
+            throw new Error('Invalid Username or Password');
         }
 
         // Compare passwords
         const isMatch = await comparePassword(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({
-                msg: 'Invalid Username or Password'
-            });
+            throw new Error('Invalid Username or Password');
         }
 
         // Generate JWT token
         const token = generateToken(user);
 
         res.json({ token });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+    } catch (error) {
+        return res.status(400).json({ msg: error.message });
     }
 };
-
-
