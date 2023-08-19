@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(null);
+
     const [formData, setFormData] = useState({
         name: '',
         username: '',
         email: '',
         password: ''
     });
-
 
     const handleChange = (e) => {
         setFormData({
@@ -25,12 +26,13 @@ const Signup = () => {
             console.log(response.data);
             navigate('/');
         } catch (error) {
-            console.error("Error Signing up:", error.response.data);
+            setErrorMessage(error.response.data.msg);
         }
     };
 
     return (
         <div className="container mt-5">
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
             <h2>Signup</h2>
             <form onSubmit={handleSubmit} method='post'>
                 <div className="mb-3">
@@ -51,7 +53,7 @@ const Signup = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Signup</button>
                 <div className="mt-3">
-                    Already a user? <Link to="/Login">Login</Link>
+                    Already a user? <Link to="/">Homepage</Link>
                 </div>
             </form>
         </div>

@@ -1,13 +1,14 @@
 import axios from 'axios';
+import propTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = ({ onClose, onLogin }) => {
+const Login = ({ onClose, onLogin, promptMessage }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
-
+    const [errorMessage, setErrorMessage] = useState(null);
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -24,7 +25,7 @@ const Login = ({ onClose, onLogin }) => {
             onClose();
             window.location.reload();
         } catch (error) {
-            console.error("Error Logging in:", error.response.data);
+            setErrorMessage(error.response.data.msg);
         }
     };
 
@@ -32,6 +33,8 @@ const Login = ({ onClose, onLogin }) => {
         <div className="login-modal">
             <div className="modal-content">
                 <span className="close-button" onClick={onClose}>&times;</span>
+                {promptMessage && <div className="prompt-message">{promptMessage}</div>}
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit} method='post'>
                     <div className="mb-3">
@@ -51,6 +54,11 @@ const Login = ({ onClose, onLogin }) => {
         </div>
     );
 }
+Login.propTypes = {
+    onClose: propTypes.func.isRequired,
+    onLogin: propTypes.func.isRequired,
+    promptMessage: propTypes.string
+};
 
 export default Login;
 

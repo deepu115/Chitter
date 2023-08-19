@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import axios from 'axios';
 import Login from './Login';
 
@@ -45,7 +46,7 @@ function Peeps({ isLoggedIn, setLoggedIn }) {
     return (
         <div className="container mt-4">
 
-            {showLoginModal && <Login onClose={() => setShowLoginModal(false)} onLogin={() => { setLoggedIn(true); setShowLoginModal(false); }} />}
+            {showLoginModal && <Login onClose={() => setShowLoginModal(false)} onLogin={() => { setLoggedIn(true); setShowLoginModal(false); }} promptMessage="Please login to post a Peep" />}
 
 
             <div className="mb-3">
@@ -56,7 +57,7 @@ function Peeps({ isLoggedIn, setLoggedIn }) {
                     placeholder="What's happening?"
                     rows="3"
                 ></textarea>
-                <button className="btn btn-primary mt-2" onClick={handlePostPeep}>Post</button>
+                <button className="btn btn-primary mt-2" onClick={handlePostPeep}>Peep</button>
             </div>
 
             <div className="peeps-list">
@@ -73,6 +74,11 @@ function Peeps({ isLoggedIn, setLoggedIn }) {
         </div>
     );
 }
+Peeps.propTypes = {
+    isLoggedIn: propTypes.bool.isRequired,
+    setLoggedIn: propTypes.func.isRequired
+};
+
 
 export default Peeps;
 
