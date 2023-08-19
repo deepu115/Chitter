@@ -1,6 +1,6 @@
 import User from '../models/user.js';
 import { hashPassword, comparePassword, generateToken } from '../services/authService.js';
-import { body, validationResult } from 'express-validator';
+import { validationResult } from 'express-validator';
 
 // User Registration/Signup
 export const signup = async (req, res) => {

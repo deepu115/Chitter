@@ -1,8 +1,7 @@
-import User from '../models/user.js';
 import Peep from '../models/peep.js';
 
 export const fetchAllPeeps = async () => {
-    return await User.find().sort({ timestamp: -1 }).populate('user', 'username name');
+    return await Peep.find().sort({ timestamp: -1 }).populate('user', 'name username');
 };
 
 export const addNewPeep = async (content, userId) => {

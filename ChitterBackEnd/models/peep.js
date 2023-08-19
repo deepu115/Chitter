@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const peepSchema = new mongoose.Schema({
     content: {
         type: String,
