@@ -48,7 +48,7 @@ describe('Signup tests', () => {
                 password: 'spectre007'
             });
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('msg', 'User already exists');
+        expect(res.body).to.have.property('msg', 'Email already registered');
     });
 
     it('should not register a user with missing fields', async () => {
@@ -59,10 +59,8 @@ describe('Signup tests', () => {
                 email: 'bond007@mi.com',
                 password: 'spectre007'
             });
-
         expect(res).to.have.status(400);
-        expect(res.body.errors).to.be.an('array');
-        expect(res.body.errors[0]).to.have.property('msg', 'Username is required');
+        expect(res.body).to.have.property('msg', 'Username is required');
     });
 
     it('should not register a user with an invalid email format', async () => {
@@ -74,10 +72,8 @@ describe('Signup tests', () => {
                 email: 'bond007',
                 password: 'spectre007'
             });
-
         expect(res).to.have.status(400);
-        expect(res.body.errors).to.be.an('array');
-        expect(res.body.errors[0]).to.have.property('msg', 'Please include a valid email');
+        expect(res.body).to.have.property('msg', 'Please include a valid email');
     });
 
     it('should not register a user with a password less than 6 characters', async () => {
@@ -89,10 +85,8 @@ describe('Signup tests', () => {
                 email: 'bond007@mi.com',
                 password: '007'
             });
-
         expect(res).to.have.status(400);
-        expect(res.body.errors).to.be.an('array');
-        expect(res.body.errors[0]).to.have.property('msg', 'Please enter a password with 6 or more characters');
+        expect(res.body).to.have.property('msg', 'Please enter a password with 6 or more characters');
     });
 
     it('should not register a user with a missing name field', async () => {
@@ -103,10 +97,8 @@ describe('Signup tests', () => {
                 email: 'bond007@mi.com',
                 password: 'spectre007'
             });
-
         expect(res).to.have.status(400);
-        expect(res.body.errors).to.be.an('array');
-        expect(res.body.errors[0]).to.have.property('msg', 'Name is required');
+        expect(res.body).to.have.property('msg', 'Name is required');
     });
 });
 

@@ -8,18 +8,14 @@ export const signup = async (req, res) => {
         if (!errors.isEmpty()) {
             throw new Error(errors.array()[0].msg);
         }
-
         const { name, username, email, password } = req.body;
-
         // Check if user already exists
         let user = await User.findOne({ email });
         if (user) {
             throw new Error('Email already registered');
         }
-
         // Hash password
         const hashedPassword = await hashPassword(password);
-
         // Create user in database
         user = new User({
             name,
@@ -28,10 +24,8 @@ export const signup = async (req, res) => {
             password: hashedPassword
         });
         await user.save();
-
         // Generate JWT token
         const token = generateToken(user);
-
         res.json({ token });
     } catch (error) {
         const errorMessage =

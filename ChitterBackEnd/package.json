@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "NODE_ENV=test mocha --exit"
+    "test": "NODE_ENV=test c8 mocha --exit"
   },
   "author": "Dileep",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "c8": "^8.0.1",
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
   }
 }
