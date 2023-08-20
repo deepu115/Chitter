@@ -4,6 +4,8 @@ import Signup from '../../src/Components/Signup';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 
+
+
 vi.mock('axios');
 
 describe('Signup Component', () => {
@@ -66,5 +68,35 @@ describe('Signup Component', () => {
         expect(axios.post).not.toHaveBeenCalled();
     });
 
+    it('should have a link that navigates to the homepage for existing users', () => {
+        render(
+            <Router>
+                <Signup />
+            </Router>
+        );
+        const linkElement = screen.getByText('Homepage');
+        expect(linkElement.closest('a')).toHaveAttribute('href', '/');
+    });
+    it('should display an error message', async () => {
+        const mockErrorMessage = "Email already registered";
+        axios.post.mockRejectedValueOnce({
+            response: {
+                data: {
+                    msg: mockErrorMessage
+                }
+            }
+        });
 
+        render(
+            <Router>
+                <Signup />
+            </Router>
+        );
+        fireEvent.change(screen.getAllByLabelText(/name/i)[0], { target: { value: 'Harry Potter' } });
+        fireEvent.change(screen.getByLabelText(/username/i), { target: { value: 'harry' } });
+        fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'hpotter@gmail.com' } });
+        fireEvent.change(screen.getByLabelText(/password/i), { target: { value: '12345678' } });
+        fireEvent.click(screen.getByRole('button', { name: /signup/i }));
+        expect(await screen.findByText(mockErrorMessage)).toBeInTheDocument();
+    });
 });

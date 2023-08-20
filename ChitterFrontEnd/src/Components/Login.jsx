@@ -3,7 +3,8 @@ import propTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = ({ onClose, onLogin, promptMessage }) => {
+
+const Login = ({ onClose, onLogin, promptMessage, reloadPageFunction = () => window.location.reload() }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -23,7 +24,7 @@ const Login = ({ onClose, onLogin, promptMessage }) => {
             localStorage.setItem("token", response.data.token);
             onLogin();
             onClose();
-            window.location.reload();
+            reloadPageFunction();
         } catch (error) {
             setErrorMessage(error.response.data.msg);
         }
@@ -57,7 +58,8 @@ const Login = ({ onClose, onLogin, promptMessage }) => {
 Login.propTypes = {
     onClose: propTypes.func.isRequired,
     onLogin: propTypes.func.isRequired,
-    promptMessage: propTypes.string
+    promptMessage: propTypes.string,
+    reloadPageFunction: propTypes.func.isRequired
 };
 
 export default Login;
