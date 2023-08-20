@@ -6,7 +6,7 @@ import userRoutes from './routes/users.js';
 import peepRoutes from './routes/peeps.js';
 
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({ path: '.env' });
 
 const app = express();
 
