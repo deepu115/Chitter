@@ -15,7 +15,7 @@ const Logout = (props) => {
 
     return (
         <div>
-            {isLoggedIn && <button className="btn btn-success" onClick={handleLogout}>Logout</button>
+            {isLoggedIn && <button className="btn btn-success btn-sm" id="logout" onClick={handleLogout}>Logout</button>
             }
         </div>
     );

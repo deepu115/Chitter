@@ -57,6 +57,7 @@ html {
     background-color: var(--chitter-dark-green);
     border-color: var(--chitter-dark-green);
     transition: all 0.3s ease;
+    margin-left: 1rem;
 }
 
 .btn:active {
@@ -168,7 +169,13 @@ h3 {
     color: #ebe7f0;
 }
 
-.peeps-list small {
+.dark-theme #logout {
+    background-color: var(--dark-bg);
+    border-color: var(--dark-accent);
+
+}
+
+.dark-theme .peeps-list small {
     font-size: 1rem;
     font-weight: 500;
     font-style: italic;

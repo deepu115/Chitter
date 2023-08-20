@@ -38,7 +38,7 @@ const Navbar = ({ isLoggedIn, setLoggedIn }) => {
                                 checked={isDarkMode}
                             />
                             <label className="form-check-label" htmlFor="darkModeToggle">
-                                {isDarkMode ? '🌙' : '☀️'}
+                                {isDarkMode ? '🌙 ' : '☀️ '}
                             </label>
                         </div>
                     </div>
@@ -52,8 +52,8 @@ const Navbar = ({ isLoggedIn, setLoggedIn }) => {
     );
 }
 Navbar.propTypes = {
-    isLoggedIn: propTypes.bool.isRequired,
-    setLoggedIn: propTypes.func.isRequired
+    isLoggedIn: propTypes.bool,
+    setLoggedIn: propTypes.func
 };
 
 export default Navbar;
