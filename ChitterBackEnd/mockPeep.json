@@ -1,0 +1,13 @@
+{
+    "_id": {
+        "$oid": "64e147711b5992a5872f2cf5"
+    },
+    "content": "This is a test peep.",
+    "user": {
+        "$oid": "64e14f9a7ada0f290aaa389a"
+    },
+    "timestamp": {
+        "$date": "2023-08-19T22:51:29.464Z"
+    },
+    "__v": 0
+}

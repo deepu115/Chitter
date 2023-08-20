@@ -1,0 +1,10 @@
+{
+    "_id": {
+        "$oid": "64e14f9a7ada0f290aaa389a"
+    },
+    "email": "benstokes@gmail.com",
+    "password": "$2b$10$4BEOknflruv1qFysb7oG4OH4//9wkEAfYrnOWsJF493eBih2VnRhK",
+    "name": "Ben Stokes",
+    "username": "ben07",
+    "__v": 0
+}

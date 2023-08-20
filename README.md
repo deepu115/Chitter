@@ -6,7 +6,7 @@ Chitter Challenge
 * If you have a partial solution, **still check in a partial solution**
 * You must submit your work by 9:30am Monday morning
 
-Challenge:
+Challenge
 -------
 
 As usual please start by forking this repo.
@@ -15,10 +15,11 @@ We are going to write a small twitter clone that will allow users to post messag
 
 Good luck and let the chitter begin!
 
-Features:
+Features
 -------
 
 ### Standard Acceptance Criteria
+
 ```
 As a trainee software engineer
 So that I can let people know what I am doing  
@@ -45,11 +46,11 @@ So that I can avoid others posting messages on Chitter as me
 I want to log out of Chitter
 ```
 
-Additional requirements:
+Additional requirements
 ------
 
 * You don't have to be logged in to see the peeps.
-* Trainee software engineers sign up to chitter with their email, password, name and a username (e.g. ewright@digitalfutures.com, password123, Ed Wright, edwright6975).
+* Trainee software engineers sign up to chitter with their email, password, name and a username (e.g. <ewright@digitalfutures.com>, password123, Ed Wright, edwright6975).
 * The username and email are unique.
 * Peeps (posts to chitter) have the name of the trainee and their user handle.
 * Your README should indicate the technologies used, and give instructions on how to install and run the tests.
@@ -65,3 +66,20 @@ As a trainee
 In order to start a conversation as a DFA trainee Software Engineer
 I want to reply to a peep from another trainee.
 ```
+
+## Technologies Used
+
+* React.js
+* Bootstrap
+* Express
+* Node.js
+* Chai
+* Mocha and Sinon
+* vite test
+* JWT
+
+## To start the application locally
+
+* npm start to run the server at Backend
+* npm run dev to run the app at Frontend
+* Adjust the .env files accordingly for your local mongodb server
