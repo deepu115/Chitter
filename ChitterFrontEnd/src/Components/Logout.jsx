@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import propTypes from 'prop-types';
 
-const Logout = () => {
+const Logout = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const navigate = useNavigate();
 
@@ -9,7 +10,7 @@ const Logout = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
         navigate('/');
-        window.location.reload();
+        props.reloadPageFunction();
     }
 
     return (
@@ -19,5 +20,12 @@ const Logout = () => {
         </div>
     );
 }
+Logout.defaultProps = {
+    reloadPageFunction: () => window.location.reload()
+};
+
+Logout.propTypes = {
+    reloadPageFunction: propTypes.func
+};
 
 export default Logout;

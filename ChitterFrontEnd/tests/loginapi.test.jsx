@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Login from '../../src/Components/Login';
+import Login from '../src/Components/Login';
 import { MemoryRouter as Router } from 'react-router-dom';
 
 vi.mock('axios');

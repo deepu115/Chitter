@@ -59,7 +59,7 @@ Login.propTypes = {
     onClose: propTypes.func.isRequired,
     onLogin: propTypes.func.isRequired,
     promptMessage: propTypes.string,
-    reloadPageFunction: propTypes.func.isRequired
+    reloadPageFunction: propTypes.func
 };
 
 export default Login;

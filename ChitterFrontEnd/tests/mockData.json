@@ -1,0 +1,13 @@
+[
+    {
+        "_id": "1",
+        "content": "This is a test peep.",
+        "user": {
+            "username": "John111",
+            "name": "John Cena"
+        },
+        "timestamp": {
+            "date": "2023-08-19T22:51:29.464Z"
+        }
+    }
+]

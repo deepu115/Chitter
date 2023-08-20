@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Signup from '../../src/Components/Signup';
+import Signup from '../src/Components/Signup'
 import { MemoryRouter as Router } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 
@@ -13,7 +13,7 @@ describe('Signup Component', () => {
         vi.clearAllMocks();
     });
     it('should make a successful API call on form submission', async () => {
-        axios.post.mockResolvedValueOnce({ data: {} });
+        axios.post.mockResolvedValueOnce({ data: "Success" });
 
         render(
             <Router>
