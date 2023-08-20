@@ -1,23 +1,51 @@
-/* Define green theme colors */
+/* Variables */
 :root {
-    --chitter-dark-green: #006400;
-    --chitter-light-green: #90EE90;
+    --chitter-dark-green: #28a745;
+    --chitter-light-green: #6bc86b;
     --chitter-off-white: #FAFFFA;
+    /* Dark theme colors */
+    --dark-bg: #121212;
+    --dark-text: #e0e0e0;
+    --dark-accent: #bb86fc;
 }
 
-/* Override Bootstrap's default dark navbar with Chitter's dark green */
+img {
+    border-radius: 50%;
+}
+
+.navbar.navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--chitter-off-white);
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    padding: 1rem;
+}
+
 .navbar.bg-dark {
     background-color: var(--chitter-dark-green) !important;
 }
 
-/* Set the background for the main content */
-body {
-    background-color: var(--chitter-off-white);
-}
-
-/* Style cards for Peeps with green accents */
 .card {
     border-color: var(--chitter-light-green);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 .card-header,
@@ -25,31 +53,158 @@ body {
     background-color: var(--chitter-light-green);
 }
 
-/* Override Bootstrap's default green button with Chitter's dark green */
 .btn-success {
     background-color: var(--chitter-dark-green);
     border-color: var(--chitter-dark-green);
+    transition: all 0.3s ease;
 }
 
-/* Style form controls with green touch */
+.btn:active {
+    transform: scale(0.98);
+}
+
 .form-control:focus {
     border-color: var(--chitter-dark-green);
     box-shadow: 0 0 0 0.2rem rgba(0, 100, 0, 0.25);
-    /* This shadow is based on the dark green color */
 }
 
 .form-label {
     color: var(--chitter-dark-green);
 }
 
-/* If using modals for logout or other notifications */
 .modal-header {
     background-color: var(--chitter-light-green);
     color: white;
 }
 
-.modal-footer .btn:not(.btn-success) {
-    color: var(--chitter-dark-green);
-    border-color: var(--chitter-dark-green);
-    background-color: transparent;
+.modal-content {
+    padding: 1rem;
+}
+
+.modal-header,
+.modal-footer {
+    padding: 1rem 1rem;
+}
+
+.footer {
+    background-color: var(--chitter-dark-green);
+    color: #FAFFFA;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+#app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Dark Theme Styles */
+.dark-theme body,
+.dark-theme html {
+    background-color: var(--dark-bg);
+}
+
+.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark-theme .navbar.bg-dark {
+    background-color: var(--dark-bg) !important;
+}
+
+.dark-theme a {
+    color: var(--dark-accent);
+}
+
+.dark-theme .card {
+    background-color: #1e1e1e;
+    border-color: var(--dark-accent);
+    color: var(--dark-text);
+}
+
+.dark-theme .modal-content {
+    background-color: #1e1e1e;
+    color: var(--dark-text);
+}
+
+.dark-theme .btn-primary {
+    background-color: #6200ea;
+    border-color: #3700b3;
+}
+
+.dark-theme .btn-secondary {
+    background-color: #03dac6;
+    border-color: #018786;
+}
+
+.dark-theme .footer {
+    background-color: #1e1e1e;
+    color: var(--dark-accent);
+}
+
+.dark-theme .form-label {
+    color: var(--dark-accent);
+}
+
+.dark-theme textarea {
+    border-color: var(--dark-accent);
+    color: var(--dark-text);
+}
+
+.dark-theme .form-check-input:checked {
+    background-color: #bb86fc !important;
+    border-color: #bb86fc !important;
+}
+
+.dark-theme h2,
+h3 {
+    color: #bb86fc;
+}
+
+.dark-theme #signUpFooter {
+    color: #ebe7f0;
+}
+
+.peeps-list small {
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    color: #a0a0a0;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+
+.error-message {
+    color: red;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.card-title {
+    font-family: 'Merriweather', serif;
+}
+
+.peep .card-text {
+    font-family: 'Roboto', sans-serif;
 }

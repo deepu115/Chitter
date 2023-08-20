@@ -34,25 +34,25 @@ const Signup = () => {
         <div className="container mt-5">
             {errorMessage && <div className="error-message">{errorMessage}</div>}
             <h2>Signup</h2>
-            <form onSubmit={handleSubmit} method='post'>
+            <form onSubmit={handleSubmit} name="signup" method='post'>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                    <input type="text" className="form-control" id="name" name="name" autoComplete="given-name" value={formData.name} onChange={handleChange} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username</label>
-                    <input type="text" className="form-control" id="username" name="username" value={formData.username} onChange={handleChange} required />
+                    <input type="text" className="form-control" id="username" name="username" autoComplete="username" value={formData.username} onChange={handleChange} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <input type="email" className="form-control" id="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                    <input type="password" className="form-control" id="password" name="password" autoComplete="new-password" value={formData.password} onChange={handleChange} required />
                 </div>
                 <button type="submit" className="btn btn-primary">Signup</button>
-                <div className="mt-3">
+                <div className="mt-3" id="signUpFooter">
                     Already a user? <Link to="/">Homepage</Link>
                 </div>
             </form>

@@ -3,12 +3,14 @@ import propTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
 
-function Navbar({ isLoggedIn, setLoggedIn }) {
+const Navbar = ({ isLoggedIn, setLoggedIn }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-
+        setIsDarkMode(prevMode => !prevMode);
+        !isDarkMode ?
+            document.documentElement.classList.add('dark-theme') :
+            document.documentElement.classList.remove('dark-theme');
     };
 
     return (
@@ -28,16 +30,25 @@ function Navbar({ isLoggedIn, setLoggedIn }) {
                     </ul>
                     <div className="d-flex">
                         <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" id="darkModeToggle" onChange={toggleDarkMode} />
-                            <label className="form-check-label" htmlFor="darkModeToggle">{isDarkMode ? 'Night Mode' : 'Day Mode'}</label>
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id="darkModeToggle"
+                                onChange={toggleDarkMode}
+                                checked={isDarkMode}
+                            />
+                            <label className="form-check-label" htmlFor="darkModeToggle">
+                                {isDarkMode ? '🌙' : '☀️'}
+                            </label>
                         </div>
-                        {isLoggedIn && (
-                            <Logout setLoggedIn={setLoggedIn} />
-                        )}
                     </div>
+
+                    {isLoggedIn && (
+                        <Logout setLoggedIn={setLoggedIn} />
+                    )}
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }
 Navbar.propTypes = {

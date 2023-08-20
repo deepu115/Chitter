@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import axios from 'axios';
 import Login from './Login';
 
-function Peeps({ isLoggedIn, setLoggedIn }) {
+const Peeps = ({ isLoggedIn, setLoggedIn }) => {
     const [peeps, setPeeps] = useState([]);
     const [newPeepContent, setNewPeepContent] = useState('');
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -64,9 +64,11 @@ function Peeps({ isLoggedIn, setLoggedIn }) {
                 {peeps.map(peep => (
                     <div key={peep._id} className="card mb-3">
                         <div className="card-body">
-                            <h5 className="card-title">{peep.user.username} (@{peep.user.name})</h5>
+                            <h5 className="card-title">{peep.user.name} <small>@{peep.user.username}</small></h5>
                             <p className="card-text">{peep.content}</p>
-                            <footer className="blockquote-footer">{new Date(peep.timestamp).toLocaleString()}</footer>
+                            <p className="card-text">
+                                <small>{new Date(peep.timestamp).toLocaleString()}</small>
+                            </p>
                         </div>
                     </div>
                 ))}
