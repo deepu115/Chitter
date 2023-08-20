@@ -9,11 +9,13 @@ const Logout = () => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
         navigate('/');
+        window.location.reload();
     }
 
     return (
         <div>
-            {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+            {isLoggedIn && <button className="btn btn-success" onClick={handleLogout}>Logout</button>
+            }
         </div>
     );
 }
