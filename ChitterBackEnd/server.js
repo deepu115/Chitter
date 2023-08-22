@@ -5,8 +5,7 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/users.js';
 import peepRoutes from './routes/peeps.js';
 
-
-dotenv.config({ path: '.env.dev' });
+process.env.NODE_ENV === "test" ? dotenv.config({ path: '.env.test' }) : dotenv.config({ path: '.env.dev' });
 
 const app = express();
 

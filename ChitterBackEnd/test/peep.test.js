@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import Peep from '../models/peep.js';
 import { expect } from 'chai';
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({ path: '.env.test' });
 
 chai.use(chaiHttp);
 

@@ -4,7 +4,7 @@ import app from '../server.js';
 import User from '../models/user.js';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({ path: '.env.test' });
 
 chai.use(chaiHttp);
 const { expect } = chai;

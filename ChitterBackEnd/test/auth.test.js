@@ -5,7 +5,7 @@ import User from '../models/user.js';
 import dotenv from 'dotenv';
 import { hashPassword } from '../services/authService.js';
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({ path: '.env.test' });
 
 chai.use(chaiHttp);
 const { expect } = chai;

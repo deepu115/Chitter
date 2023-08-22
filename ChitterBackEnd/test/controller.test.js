@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import sinon from 'sinon';
 
 
-dotenv.config({ path: '.env.dev' });
+dotenv.config({ path: '.env.test' });
 
 chai.use(chaiHttp);
 const { expect } = chai;

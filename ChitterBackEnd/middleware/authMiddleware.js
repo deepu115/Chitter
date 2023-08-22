@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
 
+process.env.NODE_ENV === "test" ? dotenv.config({ path: '.env.test' }) : dotenv.config({ path: '.env.dev' });
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const auth = (req, res, next) => {
