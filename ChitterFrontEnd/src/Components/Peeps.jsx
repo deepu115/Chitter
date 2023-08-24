@@ -13,7 +13,7 @@ const Peeps = ({ isLoggedIn, setLoggedIn }) => {
 
     const fetchPeeps = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/peeps');
+            const response = await axios.get('https://chitter-back-end.onrender.com/api/peeps');
             setPeeps(response.data);
         } catch (error) {
             console.error("Error fetching peeps:", error);

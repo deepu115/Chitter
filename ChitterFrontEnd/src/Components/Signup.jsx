@@ -22,7 +22,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/users/signup', formData, { withCredentials: true });
+            const response = await axios.post('https://chitter-back-end.onrender.com/api/users/signup', formData, { withCredentials: true });
             console.log(response.data);
             navigate('/');
         } catch (error) {
