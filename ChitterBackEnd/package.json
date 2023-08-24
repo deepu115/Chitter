@@ -6,8 +6,11 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=dev nodemon server",
-    "build": "nodemon server",
-    "test": "NODE_ENV=test c8 mocha --exit"
+    "build": "NODE_ENV=prod nodemon src/server",
+    "test": "NODE_ENV=test c8 mocha --exit",
+    "test-win": "SET NODE_ENV=test&&mocha --timeout 10000 --exit",
+    "start-win": "SET NODE_ENV=dev&&nodemon src/server",
+    "start-prod-win": "SET NODE_ENV=prod&&nodemon src/server"
   },
   "author": "Dileep",
   "license": "ISC",

@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import mongoose from 'mongoose';
 import userRoutes from './routes/users.js';
 import peepRoutes from './routes/peeps.js';
 
-process.env.NODE_ENV === "test" ? dotenv.config({ path: '.env.test' }) : dotenv.config({ path: '.env.dev' });
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
 

@@ -4,11 +4,11 @@ import chaiHttp from 'chai-http';
 import app from '../server.js';
 import User from '../models/user.js';
 import Peep from '../models/peep.js';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import sinon from 'sinon';
 
 
-dotenv.config({ path: '.env.test' });
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 chai.use(chaiHttp);
 const { expect } = chai;

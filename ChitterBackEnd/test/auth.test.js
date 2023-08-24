@@ -2,10 +2,10 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server.js';
 import User from '../models/user.js';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import { hashPassword } from '../services/authService.js';
 
-dotenv.config({ path: '.env.test' });
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 chai.use(chaiHttp);
 const { expect } = chai;

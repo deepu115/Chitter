@@ -1,11 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server.js';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import Peep from '../models/peep.js';
 import { expect } from 'chai';
 
-dotenv.config({ path: '.env.test' });
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 chai.use(chaiHttp);
 

@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
-process.env.NODE_ENV === "test" ? dotenv.config({ path: '.env.test' }) : dotenv.config({ path: '.env.dev' });
+config({ path: `.env.${process.env.NODE_ENV}` });
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const hashPassword = async (password) => {
