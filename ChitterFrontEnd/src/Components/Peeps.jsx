@@ -29,7 +29,7 @@ const Peeps = ({ isLoggedIn, setLoggedIn }) => {
                         'x-auth-token': token
                     }
                 };
-                await axios.post('http://localhost:3000/api/peeps', { content: newPeepContent }, config);
+                await axios.post('https://chitter-back-end.onrender.com/api/peeps', { content: newPeepContent }, config);
                 setNewPeepContent('');
                 fetchPeeps();
             } catch (error) {

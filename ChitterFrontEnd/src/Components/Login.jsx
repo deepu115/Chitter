@@ -20,7 +20,7 @@ const Login = ({ onClose, onLogin, promptMessage, reloadPageFunction = () => win
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://chitter-back-end.onrender.com/login/api/users/login', formData, { withCredentials: true });
+            const response = await axios.post('https://chitter-back-end.onrender.com/api/users/login', formData, { withCredentials: true });
             localStorage.setItem("token", response.data.token);
             onLogin();
             onClose();
